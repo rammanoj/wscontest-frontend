@@ -1,0 +1,18 @@
+<template>
+    <div class="container">
+        <br>
+        <h1>Indic Wikisource Contest Tool</h1>
+        <p>
+            This tool is used to evaluate the proofreading and validation of a contest.
+        </p>
+    </div>
+
+      <footer class="footer fixed-bottom">
+    <p class="container text-center"><small>Created and maintained by
+        <a href="https://meta.wikimedia.org/wiki/User:Jayprakash12345">Jayprakash</a>,
+        <a href="https://meta.wikimedia.org/wiki/Indic-TechCom">Indic-TechCom</a> (
+        <a href="https://gerrit.wikimedia.org/g/labs/tools/indic-wscontest">View Source</a> )
+        </small>
+    </p>
+</footer>
+</template>
