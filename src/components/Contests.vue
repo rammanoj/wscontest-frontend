@@ -20,21 +20,19 @@
                 <th scope="col" data-sortable="true">Project</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
-                <th scope="col" data-sortable="true" data-field="createdon" data-sorter="sort">Created on</th>
+                <th scope="col" data-sortable="true" data-field="createdon">Created on</th>
             </tr>
         </thead>
         <tbody>
-                    <tr v-for="k in contestKeys" :key="k">
-                        <th scope="row">
-                            <a href="aasd">
-                                {{ contests[k].name }}
-                            </a>
-                        </th>
-                        <td>{{ contests[k].project }}</td>
-                        <td>{{ contests[k].start_date }} IST</td>
-                        <td>{{ contests[k].end_date }} IST</td>
-                        <td><span style="display: none;">{{ convertDate(contests[k].createdon) }}</span>&nbsp;{{ contests[k].createdon }} IST</td>
-                    </tr>
+            <tr v-for="k in contestKeys" :key="k">
+                <th scope="row">
+                    <router-link class="nav-link" :to="{ name: 'contest', params: { id: k }}">{{ contests[k].name }}</router-link>
+                </th>
+                <td>{{ contests[k].project }}</td>
+                <td>{{ contests[k].start_date }} IST</td>
+                <td>{{ contests[k].end_date }} IST</td>
+                <td><span style="display: none;">{{ convertDate(contests[k].createdon) }}</span>&nbsp;{{ contests[k].createdon }} IST</td>
+            </tr>
         </tbody>
         </table>
     </div>
@@ -72,8 +70,12 @@
         }
         },
         convertDate(date) {
-            console.log(Date.parse(new Date(date)))
-            return Date.parse(new Date(date))
+            console.log(Date.parse(this.getDate(date)))
+            return Date.parse(this.getDate(date))
+        },
+        getDate(dt) {
+            let d = dt.split(", ")[0].split("-"), t = dt.split(", ")[1].split(":")
+            return new Date(d[2], d[1], d[0], t[0], t[1])
         }
     },
     created() {
@@ -90,30 +92,4 @@
 .th-inner {
     font-weight: bold !important;
 }
-
-.loader {
-    display:    block;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('./icons/loader.gif') 
-                50% 50% 
-                no-repeat;
-}
-
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
-/* body.loading .loader {
-    overflow: hidden;   
-} */
-
-/* Anytime the body has the loading class, our
-   modal element will be visible */
-/* body.loading .loader {
-    display: block;
-} */
 </style>
